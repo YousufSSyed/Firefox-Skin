@@ -15,6 +15,10 @@
     --tAnimation: cubic-bezier(.25,.8,.25,1);
     --TextColor: black;
     --panel-separator-color: var(--arrowpanel-color);
+    /* Overwritten Firefox Variavles */
+    --arrowpanel-border-color: transparent !important;
+    --panel-subview-body-padding: 5px !important;
+    --panel-border-color: rgba(0,0,0,0);
 	/* Icon Variables */
     --AspectRatio: "aspect_ratio";
     --AddPerson: "person_add";
@@ -193,14 +197,15 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
 }
 
 .tab-background {
-    margin: 4px 0 3px 0 !important
+    margin: 4px 0 3px 0 !important;
+    border: none !important;
 }
 
 .tab-close-button {
-    height: 24px !important;
-    padding: 6px !important;
-    width: 24px !important;
-    border-radius: 50px;
+    margin-bottom: -1px !important;
+    padding: 4.5px !important;
+    height: 20px !important;
+    width: 20px !important;
 }
 
 #PanelUI-button {
@@ -219,14 +224,14 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
 }
 
 #tabs-newtab-button .toolbarbutton-icon {
-    padding: 0px !important;
-    width: 27.5px !important;
     height: 27.5px !important;
+    width: 27.5px !important;
     padding: 5px !important;
+    padding: 0px !important;
 }
 
-.menu-iconic > .menu-iconic-left, .menuitem-iconic > .menu-iconic-left {
-    margin-top: -2px !important;
+menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
+    margin-left: -2px !important;
 }
 
 #tabbrowser-arrowscrollbox {
@@ -255,13 +260,13 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
     height: 28px !important;
 }
 
-#appMenu-libraryView .panel-subview-body {
-    overflow: hidden !important;
-    padding: 6px 0 9px !important;
+#appMenu-protonMainView toolbarbutton, #appMenu-fxa-label2 {
+    padding: 6px 10px !important;
 }
 
-.panel-subview-body > toolbarbutton, #appMenu-fxa-label2 {
-    padding: 6px 10px !important;
+#appMenu-proton-update-banner {
+    transition: var(--Transition);
+    margin: 0 !important;
 }
 
 #back-button image, #forward-button image, .tab-close-button.close-icon {
@@ -289,9 +294,13 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
 }
 
 .urlbarView-row-inner {
-    padding: 6.5px 15px !important;
+    padding: 5px 12.5px !important;
     margin: 0 !important;
 }
+
+#toolbox-tab-inspector {
+    font-weight: 900 !important;
+  }
 
 #appMenu-fxa-status2 {
     margin-right: 0 !important;
@@ -328,25 +337,11 @@ menupopup {
 }
 
 menupopup > menuitem, menupopup > menu {
-    padding-block: calc(0.25em + 2px) !important;
-    margin: 0px 3.5px !important;
+    padding-block: calc(0.1875em + 2px) !important;
 }
 
-menupopup > menu.menu-iconic.bookmark-item {
-    margin: 0 6px !important;
-}
-
-.panel-subview-body, .panel-subview-body menu  {
-    margin: 0 -3px !important;
-    padding: 6px 0 !important;
-}
-
-menupopup[context="placesContext"] menuitem {
-    margin: 0 6px!important;
-}
-
-menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
-    margin-left: -2px !important;
+.tab-icon-image {
+    transform: translateY(0.5px);
 }
 
 #downloadsListBox {
@@ -371,10 +366,6 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
 
 #TabsToolbar {
     --tab-min-height: 26px;
-}
-
-#nav-bar-customization-target toolbarbutton:not(#urlbar-zoom-button) {
-    padding: 0 !important;
 }
 
 #nav-bar-customization-target {
@@ -471,9 +462,9 @@ image.checkbox-check[checked] {
     border: none !important;
 }
 
-menuseparator, toolbarseparator {
+menuseparator:before, toolbarseparator {
     border-top: 1px solid var(--arrowpanel-color) !important;
-    margin: 3px 10px !important;
+    border-image: none !important;
     opacity: 0.16 !important;
 }
 
@@ -482,12 +473,11 @@ menuseparator, toolbarseparator {
 }
 
 #appMenu-zoom-controls2 {
-    padding: 0px 5px 0 10px !important;
-    margin: 0 7px 0 8px !important;
+    padding: 0 0 0 10px !important;
 }
 
 #appMenu-zoom-controls2 > .subviewbutton {
-    margin-inline-start: 0px;
+    margin-inline-start: 0px !important;
 }
 
 .menu-iconic-text, .findbar-label.found-matches, .findbar-label.findbar-find-status {
@@ -505,13 +495,17 @@ menuseparator, toolbarseparator {
 }
 
 #urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate="invalid"] {
-    margin-right: margin-right: -2.5px !important;
+    margin-right: -2.5px !important;
     opacity: 0.69;
 }
 
-.urlbarView-row:not([type="tip"], [type="dynamic"])[selected] > .urlbarView-row-inner, .urlbarView-row-inner[selected], .urlbarView-tip-button[selected]:hover:active {
+.urlbarView-row:not([type="tip"], [type="dynamic"])[selected] > .urlbarView-row-inner, .urlbarView-row[aria-selected="true"] .urlbarView-url, .urlbarView-row-inner[selected], .urlbarView-tip-button[selected]:hover:active {
     background-color: var(--toolbar-field-focus-color) !important;
     color: var(--toolbar-field-focus-background-color) !important;
+}
+
+.urlbarView-row[aria-selected="true"] .urlbarView-type-icon {
+    fill: var(--toolbar-field-focus-background-color) !important;
 }
 
 #urlbar[focused="true"]:not([suppress-focus-border]) > #urlbar-background, #searchbar:focus-within {
@@ -559,9 +553,7 @@ toolbar .toolbarbutton-1:not(#PlacesChevron) > image.toolbarbutton-icon {
 }
 
 #PlacesToolbar menupopup {
-    appearance: none;
-    background: rgba(0,0, 0, 0.5) !important;
-    font: menu;
+    appearance: none !important;
 }
 
 .identity-box-button:hover:not([open="true"]), #tracking-protection-icon-container:hover:not([open="true"]) {
@@ -581,13 +573,31 @@ toolbar .toolbarbutton-1:not(#PlacesChevron) > image.toolbarbutton-icon {
     background-color: rgba(0,0,0,0.25) !important;
 }
 
-/* common properties */
+.subviewbutton {
+    margin: 0 11px 0 8px !important;
+    padding: 6px 8px !important;
+}
+
+.widget-overflow-list .toolbarbutton-1 {
+    padding: 6px 8px !important;
+}
+
+.panel-subview-footer-button.subviewbutton {
+    margin: 0 5px 5px 5px !important;
+}
+
+#appMenu-libraryView toolbarbutton {
+    padding: 6px 10px !important;
+    margin: 0px !important;
+}
+
+/* Common Properties */
 spacer, .titlebar-spacer:first-child, #alltabs-button, div[dynamicType="onboardTabToSearch"], .urlbarView-title-separator::before, .urlbarView-action, .urlbarView-row[label]::before, #editBookmarkPanelInfoArea, #editBookmarkPanel toolbarseparator {
     display: none !important;
 }
 
 toolbarbutton, #identity-box, toolbarbutton > *, .urlbarView-row *, .search-panel-one-offs *, .tab-icon-image[fadein], .tab-close-button[fadein], .tabbrowser-tab[fadein]::after, .tab-background[fadein], #urlbar * {
-    transition: var(--Transition);
+    transition: var(--Transition) !important;
 }
 
 .urlbarView-url {
@@ -606,8 +616,34 @@ toolbarbutton, #identity-box, toolbarbutton > *, .urlbarView-row *, .search-pane
     box-shadow: none !important;
 }
 
+#PlacesToolbar menuitem, #PlacesToolbar menu, .subview-subheader, panelview .toolbarbutton-1, .widget-overflow-list .toolbarbutton-1 {
+    margin: 0 !important;
+}
+
+#appMenu-protonMainView .subviewbutton {
+    margin: 0 1px !important;
+}
+
+#appMenu-protonMainView {
+    padding-bottom: 2px !important;
+}
+
+#nav-bar-customization-target toolbarbutton:not(#urlbar-zoom-button), #appMenu-fxa-status2[fxastatus] {
+    padding: 0 !important;
+}
+
+menupopup {
+	--menupopup-border: none !important;
+	--menupopup-shadow: none !important;
+}
+
+.menupopup-arrowscrollbox {
+	border: var(--menupopup-border, 1px solid var(--panel-border-color)) !important;
+	box-shadow: var(--menupopup-shadow, 0 0 0 1px var(--panel-border-color)) !important;
+}
+
 /* icon CSS, icon styling */
-.panel-subview-body toolbarbutton::before, menupopup menuitem:before, menupopup menu::before, #appMenu-fxa-label2:before, .toolbaritem-combined-buttons#appMenu-zoom-controls2::before {
+.panel-subview-body toolbarbutton::before, menupopup menuitem:before, menupopup menu::before, #appMenu-fxa-label2:before {
     -webkit-text-fill-color: transparent !important;
     -webkit-background-clip: text !important;
     line-height: calc(1em - 2px) !important;
@@ -616,10 +652,6 @@ toolbarbutton, #identity-box, toolbarbutton > *, .urlbarView-row *, .search-pane
     font-size: calc(1em + 5px);
     margin: 0 5px 0 -3px;
     display: block;
-}
-
-.toolbaritem-combined-buttons#appMenu-zoom-controls2::before {
-    content: var(--Zoom)
 }
 
 menupopup menuitem:before {
@@ -650,7 +682,7 @@ menupopup menuitem:before {
     content: var(--EyeBlind);
 }
 
-#appMenu-library-bookmarks-button::before, #placesContext_new\:bookmark::before, #context-pocket::before {
+#context-pocket::before {
     content: var(--BookmarkAdd);
 }
 
@@ -722,15 +754,7 @@ menupopup menuitem:before {
     content: var(--Copy);
 }
 
-#placesContext_new\:folder::before {
-    content: var(--NewFolder);
-}
-
-#placesContext_new\:separator::before {
-    content: var(--Line);
-}
-
-#toggle_PersonalToolbar::before, #appMenu-bookmarks-button::before {
+#toggle_PersonalToolbar::before, #appMenu-bookmarks-button::before, #appMenu-library-bookmarks-button::before {
     content: var(--Bookmarks);
 }
 
