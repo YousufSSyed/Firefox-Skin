@@ -176,24 +176,15 @@
 
 #nav-bar {
     box-shadow: none !important;
-    height: 38px;
+    height: 35px;
+}
+
+#urlbar-input {
+    margin-top: -1px !important;
 }
 
 #urlbar[open] > #urlbar-background {
 box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
-}
-
-#urlbar:not([open]) {
-    --urlbar-height: 30.5px !important;
-}
-
-#urlbar:not([open]) #urlbar-background {
-    transform: translateY(1px) !important;
-    height: 30px !important;
-}
-
-.toolbarbutton-1 > .toolbarbutton-badge-stack > .toolbarbutton-icon {
-    transform: scale(1.1);
 }
 
 .tab-background {
@@ -211,8 +202,9 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
 }
 
 .tab-close-button {
+    list-style-image: url("./SVGs/Close.svg") !important;
     margin-bottom: -1px !important;
-    padding: 4.5px !important;
+    padding: 3px !important;
     height: 20px !important;
     width: 20px !important;
 }
@@ -232,11 +224,25 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
     border-radius: 2em !important;
 }
 
-#tabs-newtab-button .toolbarbutton-icon {
-    height: 27.5px !important;
-    width: 27.5px !important;
-    padding: 5px !important;
-    padding: 0px !important;
+#new-tab-button image, #tabs-newtab-button image {
+    list-style-image: url("./SVGs/Add.svg") !important;
+    height: calc(var(--tab-min-height)) !important;
+    width: calc(var(--tab-min-height)) !important;
+    padding: 2.5px !important;
+}
+
+toolbar .toolbarbutton-1#alltabs-button > .toolbarbutton-badge-stack {
+    transform: translateY(.25px);
+    margin-left: -6px !important;
+    padding: 4px !important;
+}
+
+#allTabsMenu-allTabsViewTabs > .all-tabs-item {
+    margin-inline: 0px !important;
+}
+
+#allTabsMenu-allTabsViewTabs {
+    padding-bottom: ;
 }
 
 menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
@@ -245,11 +251,6 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
 
 #tabbrowser-arrowscrollbox {
     padding-left: 3px;
-}
-
-#urlbar-input-container > box {
-    margin: 1.5px 0 1px 0 !important;
-    transition: var(--Transition);
 }
 
 #star-button[starred], .urlbarView-row[source="bookmarks"] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-favicon, .urlbarView-type-icon {
@@ -283,22 +284,25 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
     fill: currentColor !important;
 }
 
-#back-button image, #forward-button image, .tab-close-button.close-icon {
-    border-radius: 50% !important;
-}
-
 .tab-background[selected="true"], :root:not([lwtheme-mozlightdark]) #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
     box-shadow: 0 0px 5px rgba(0,0,0,0.08), 0 0px 5px rgba(0,0,0,0.08) !important;
 }
 
-#alltabs-button .toolbarbutton-badge-stack {
-    transform: translateY(1px);
-    padding: 0 !important;
+#scrollbutton-down, #scrollbutton-up {
+    height: calc(var(--tab-min-height) + 7px) !important;
+    width: calc(var(--tab-min-height) + 7px) !important;
+    margin-bottom: -1px !important;
 }
 
-#scrollbutton-down, #scrollbutton-up {
-    width: 31px !important;
+#scrollbutton-up {
+    margin-left: -6px !important;
 }
+
+.tabbrowser-tab + #tabs-newtab-button {
+    transform: translateY(2.5px);
+}
+
+
 
 .urlbarView-row {
     margin: -3.75px 0 !important;
@@ -323,22 +327,8 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
     margin-left: 5px !important;
 }
 
-.urlbar-page-action, #urlbar-go-button, .search-go-button {
-    transform: scale(0.9);
-}
-
-.urlbar-page-action image, #urlbar-go-button image, .search-go-button image {
-    transform: scale(1.05);
-}
-
 .urlbarView-row:not([type="tip"], [type="dynamic"])[selected] > .urlbarView-row-inner, .urlbarView-row-inner[selected] {
     background: highlight;
-}
-
-#new-tab-button image, #tabs-newtab-button image, #alltabs-button image {
-    height: 27.5px !important;
-    width: 27.5px !important;
-    padding: 5px !important;
 }
 
 *::part(arrowscrollbox) {
@@ -537,10 +527,10 @@ menuseparator:before, toolbarseparator {
 }
 
 #urlbar[breakout][breakout-extend] > #urlbar-input-container {
-    padding: 2px 4px 2px calc(13px + var(--urlbar-container-padding)) !important;
+    padding: 0px 4px 0px calc(10px + var(--urlbar-container-padding)) !important;
     border: highlight solid 3px !important;
-    margin-bottom: 3px !important;
-    height: 37px !important;
+    margin-bottom: 2px !important;
+    height: 36px !important;
 }
 
 #urlbar-search-mode-indicator {
@@ -572,29 +562,51 @@ menuseparator:before, toolbarseparator {
     width: auto !important;
 }
 
-toolbar .toolbarbutton-1:not(#PlacesChevron) > image.toolbarbutton-icon {
-    height: calc(2 * var(--toolbarbutton-inner-padding) + 14px) !important;
-    width: calc(2 * var(--toolbarbutton-inner-padding) + 14px) !important;
+toolbar .toolbarbutton-1 > .toolbarbutton-icon, toolbar .toolbarbutton-1 > .toolbarbutton-badge-stack {
+    --toolbarbutton-inner-padding: 6.5px;
+    transform: translateY(-2px);
+    padding: 6px !important;
+}
+
+toolbar #nav-bar-customization-target .toolbarbutton-1:where(#reload-button, #stop-button) > .toolbarbutton-icon {
+    padding: 4px !important;
+}
+
+toolbar .toolbarbutton-1 > .toolbarbutton-icon {
+    padding: 7px !important;
+}
+
+toolbar .toolbarbutton-1#new-tab-button > .toolbarbutton-icon {
+    transform: translateY(0.5px);
+}
+
+#tabbrowser-arrowscrollbox:not([scrolledtostart])::part(overflow-start-indicator), #tabbrowser-arrowscrollbox:not([scrolledtoend])::part(overflow-end-indicator) {
+    background: linear-gradient(90deg, var(--lwt-accent-color), transparent) !important;
+    background-repeat: no-repeat !important;
+    background-position: 0px !important;
+    border: none !important;
+    width: 10px !important;
+}
+
+#tabbrowser-arrowscrollbox:not([scrolledtoend])::part(overflow-end-indicator) {
+    background: linear-gradient(90deg, transparent, var(--lwt-accent-color)) !important;
+}
+
+.titlebar-spacer[type="pre-tabs"] {
+    width: 20px !important;
 }
 
 #editBookmarkPanelRows > vbox > html|input:focus-visible, #editBookmarkPanelRows > vbox > hbox > html|input:focus-visible {
     outline: 2px solid highlight !important;
 }
 
+#PanelUI-menu-button {
+    margin-left: 2px !important;
+}
+
 #PlacesToolbar menupopup {
     appearance: none !important;
 }
-
-/*
-.identity-box-button:hover:not([open="true"]), #tracking-protection-icon-container:hover:not([open="true"]) {
-    background: var(--urlbar-box-hover-bgcolor) !important;
-}
-
-.identity-box-button:hover:active, .identity-box-button[open="true"], #tracking-protection-icon-container:hover:active, #tracking-protection-icon-container[open="true"] {
-    background-color: var(--urlbar-box-active-bgcolor) !important;
-    color: var(--urlbar-box-hover-text-color) !important;
-}
-*/
 
 #protections-popup-mainView .subviewbutton-nav:not(.notFound)::after, #identity-popup-mainView .subviewbutton-nav::after, .widget-overflow-list .subviewbutton-nav::after, .PanelUI-subView .subviewbutton-nav::after {
     fill-opacity: 1 !important;
@@ -660,7 +672,7 @@ menupopup {
 }
 
 /* Common Properties */
-spacer, .titlebar-spacer:first-child, #alltabs-button, div[dynamicType="onboardTabToSearch"], .urlbarView-title-separator::before, .urlbarView-action, .urlbarView-row[label]::before, #editBookmarkPanelInfoArea, #editBookmarkPanel toolbarseparator, .tab-context-line {
+div[dynamicType="onboardTabToSearch"], .urlbarView-title-separator::before, .urlbarView-action, .urlbarView-row[label]::before, #editBookmarkPanelInfoArea, #editBookmarkPanel toolbarseparator, .tab-context-line {
     display: none !important;
 }
 
@@ -692,7 +704,23 @@ toolbarbutton, #identity-box, toolbarbutton > *, .urlbarView-row *, .search-pane
     padding: 0 !important;
 }
 
-/* icon CSS, icon styling */
+#PlacesToolbarDropIndicator, .tab-drop-indicator {
+    background: var(--toolbar-color) !important;
+    list-style-image: none !important;
+    border-radius: 2px !important;
+    margin-top: 2px !important;
+    height: 21px !important;
+    width: 2px !important;
+}
+
+.tab-drop-indicator {
+    margin-bottom: 2.5px !important;
+    margin-top: 4px !important;
+    opacity: 0.5 !important;
+}
+
+/* icon CSS, icon styling 
+Icon URL styling: list-style-image: url("./SVGs/") */
 .panel-subview-body toolbarbutton::before, menupopup menu::before, #appMenu-fxa-label2:before {
     -webkit-text-fill-color: transparent !important;
     -webkit-background-clip: text !important;
@@ -702,6 +730,51 @@ toolbarbutton, #identity-box, toolbarbutton > *, .urlbarView-row *, .search-pane
     font-size: calc(1em + 5px);
     margin: 0 5px 0 -3px;
     display: block;
+}
+
+#urlbar:not(.searchButton) > #urlbar-input-container > #identity-box[pageproxystate="invalid"] #identity-icon {
+    list-style-image: url("./SVGs/Search.svg") !important;
+}
+
+#reload-button {
+    list-style-image: url("./SVGs/Refresh.svg") !important;
+}
+
+#forward-button, #back-button {
+    list-style-image: url("./SVGs/Arrow.svg") !important;
+}
+
+#library-button {
+    list-style-image: url("./SVGs/Library.svg") !important;
+}
+
+toolbar .toolbarbutton-1 > .toolbarbutton-icon[label="Library"], toolbar .toolbarbutton-1 > .toolbarbutton-icon[label="Save to Pocket"] {
+    padding: 5px !important;
+}
+
+#save-to-pocket-button {
+    list-style-image: url("./SVGs/FavoriteOutline.svg") !important;
+}
+
+#save-to-pocket-button[open="true"], #save-to-pocket-button[pocketed="true"] {
+    list-style-image: url("./SVGs/Favorite.svg") !important;
+}
+
+#nav-bar-overflow-button {
+    list-style-image: url("./SVGs/Extension.svg") !important;
+}
+
+.urlbarView-favicon[src="chrome://global/skin/icons/search-glass.svg"] {
+    content: url("./SVGs/Search.svg") !important;
+}
+
+.urlbarView-favicon[src="chrome://browser/skin/history.svg"] {
+    content: url("./SVGs/Clock.svg") !important;
+}
+
+
+#back-button {
+    transform: scaleX(-1);
 }
 
 .panel-subview-body toolbarbutton::before {
@@ -772,6 +845,11 @@ toolbarbutton, #identity-box, toolbarbutton > *, .urlbarView-row *, .search-pane
     content: var(--Bookmarks);
 }
 
+#identity-icon {
+    width: 18px !important;
+    height: 18px !important;
+}
+
 #appMenu-fxa-label2:before {
     content: var(--Person);
     margin: 0 5px 0 -1px;
@@ -787,27 +865,31 @@ toolbarbutton, #identity-box, toolbarbutton > *, .urlbarView-row *, .search-pane
     list-style-image: url("./SVGs/Folder.svg") !important;
 }
 
-/*
-.bookmark-item[container] .toolbarbutton-icon {
-    transform: scale(1.1);
-}
-*/
-
 .bookmark-item {
     list-style-image: url("./SVGs/Bookmark.svg") !important;
 }
-  
-#PlacesToolbarDropIndicator, .tab-drop-indicator {
-    background: var(--toolbar-color) !important;
-    list-style-image: none !important;
-    border-radius: 2px !important;
-    margin-top: 2px !important;
-    height: 21px !important;
-    width: 2px !important;
+
+
+
+/* CSS made with the attempt to make the urlbar elements scalabe with --urlbar-height */
+#urlbar:not([open]) {
+    --urlbar-height: 29px !important;
+    --urlbar-min-height: var(--urlbar-height);
 }
 
-.tab-drop-indicator {
-    margin-bottom: 2.5px !important;
-    margin-top: 4px !important;
-    opacity: 0.5 !important;
+#urlbar:not([open]) #urlbar-background {
+    height: var(--urlbar-height);
+}
+
+.urlbar-page-action, #urlbar-go-button, .search-go-button {
+    padding: calc(var(--urlbar-icon-padding) - 1.5px) !important;
+}
+
+#urlbar[open] .urlbar-page-action {
+    padding: calc(var(--urlbar-icon-padding) - 1px )!important;
+}
+
+
+#urlbar[open] .urlbar-page-action, #urlbar[open] #urlbar-input-container > box {
+    margin: 1.5px 0 2.25px 0 !important;
 }
