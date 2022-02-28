@@ -179,6 +179,11 @@
     height: 35px;
 }
 
+#PersonalToolbar {
+    padding-bottom: 1px !important;
+    padding-top: 0.5px !important;
+}
+
 #urlbar-input {
     margin-top: -1px !important;
 }
@@ -187,14 +192,17 @@
 box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
 }
 
-.tab-background {
-    margin: 4px 0 3px 0 !important;
+#urlbar:not([open]) {
+    --urlbar-height: 30.5px !important;
 }
 
-.tab-background:is([selected], [multiselected]):-moz-lwtheme {
-    border: none !important;
-    border-radius: 2.5px 4px 4px 2.5px !important;
-    border-left: 4px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, currentColor));
+#urlbar:not([open]) #urlbar-background {
+    transform: translateY(1px) !important;
+    height: 29px !important;
+}
+
+.tab-background {
+    margin: 4px 0 3px 0 !important;
 }
 
 .identity-color-toolbar .tab-background {
@@ -207,6 +215,10 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
     padding: 3px !important;
     height: 20px !important;
     width: 20px !important;
+}
+
+#urlbar-search-mode-indicator-close {
+    background: url("./SVGs/Close.svg") !important;
 }
 
 #PanelUI-button {
@@ -253,6 +265,10 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
     padding-left: 3px;
 }
 
+#urlbar-input-container > box {
+    margin: 1.5px 0 2.25px 0 !important;
+}
+
 #star-button[starred], .urlbarView-row[source="bookmarks"] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-favicon, .urlbarView-type-icon {
     fill: var(--toolbar-field-color) !important;
     stroke: none !important;
@@ -271,8 +287,21 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
     height: 28px !important;
 }
 
+#customizationui-widget-multiview #appMenu-libraryView, #pageActionPanel panelview, #widget-overflow panelview {
+    min-width: 25em !important;
+    max-width: 25em !important;
+}
+
+menupopup > menu, menupopup > menuitem, menupopup > menucaption {
+    max-width: 25em !important;
+}
+
 #appMenu-protonMainView toolbarbutton, #appMenu-fxa-label2 {
     padding: 5px 10px !important
+}
+
+#back-button image, #forward-button image, .tab-close-button.close-icon {
+    border-radius: 50% !important;
 }
 
 #appMenu-proton-update-banner {
@@ -284,8 +313,15 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
     fill: currentColor !important;
 }
 
+/* work on border */
 .tab-background[selected="true"], :root:not([lwtheme-mozlightdark]) #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
     box-shadow: 0 0px 5px rgba(0,0,0,0.08), 0 0px 5px rgba(0,0,0,0.08) !important;
+    border-radius: 1.5px 4px 4px 1.5px !important;
+}
+
+.tab-background:is([selected], [multiselected]):-moz-lwtheme {
+    border: none !important;
+    border-left: 4px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, currentColor)) !important;
 }
 
 #scrollbutton-down, #scrollbutton-up {
@@ -301,8 +337,6 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
 .tabbrowser-tab + #tabs-newtab-button {
     transform: translateY(2.5px);
 }
-
-
 
 .urlbarView-row {
     margin: -3.75px 0 !important;
@@ -325,6 +359,14 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
 
 .urlbar-input-box {
     margin-left: 5px !important;
+}
+
+.urlbar-page-action, #urlbar-go-button, .search-go-button {
+    transform: scale(0.9);
+}
+
+.urlbar-page-action image, #urlbar-go-button image, .search-go-button image {
+    transform: scale(1.05);
 }
 
 .urlbarView-row:not([type="tip"], [type="dynamic"])[selected] > .urlbarView-row-inner, .urlbarView-row-inner[selected] {
@@ -358,9 +400,8 @@ menupopup > menuitem, menupopup > menu {
     margin: 0 !important;
 }
 
-#urlbar-zoom-button {
-    background: color-mix(in srgb, currentColor 13%, var(--toolbar-bgcolor));
-    color: var(--toolbar-color);
+#customizationui-widget-multiview panelview:not([extension]) {
+    max-width: 25em !important;
 }
 
 ::-moz-progress-bar {
@@ -380,9 +421,10 @@ menupopup > menuitem, menupopup > menu {
 }
 
 #urlbar-zoom-button {
-    margin: 3px 3px 2px 3px !important;
+    color: var(--toolbar-color) !important;
+    margin: 3px 2px 4.5px 2px !important;
     border-radius: 1em !important;
-    padding: 0px 7px !important;
+    padding: 0px 8px !important;
 }
 
 .toolbarbutton-icon[label="Full Screen"] {
@@ -497,7 +539,7 @@ menuseparator:before, toolbarseparator {
     margin-top: 5px;
 }
 
-.tab-label-container:not([selected="true"], [multiselected]) {
+.tab-label-container:not([selected="true"], [multiselected]), #tabbrowser-arrowscrollbox[scrolledtostart="true"]::part(scrollbutton-up), #tabbrowser-arrowscrollbox[scrolledtoend="true"]::part(scrollbutton-down) {
     opacity: 1;
 }
 
@@ -526,11 +568,16 @@ menuseparator:before, toolbarseparator {
     width: 100% !important;
 }
 
+#urlbar-input-container {
+    height: calc(var(--urlbar-toolbar-height) - 3px) !important;
+}
+
 #urlbar[breakout][breakout-extend] > #urlbar-input-container {
-    padding: 0px 4px 0px calc(10px + var(--urlbar-container-padding)) !important;
+    padding: 2px 4px 2px calc(10px + var(--urlbar-container-padding)) !important;
     border: highlight solid 3px !important;
     margin-bottom: 2px !important;
-    height: 36px !important;
+    min-height: 37px !important;
+    height: unset !important;
 }
 
 #urlbar-search-mode-indicator {
@@ -541,8 +588,9 @@ menuseparator:before, toolbarseparator {
 }
 
 #urlbar-search-mode-indicator #urlbar-search-mode-indicator-close {
-    margin: 1.5px 0 0 -2px !important;
-    fill-opacity: 1;
+    background: url("./SVGs/Close.svg") no-repeat center !important;
+    background-size: 100% !important;
+    margin: 1px 0 0 -2px !important;
 }
 
 #urlbar-input-container {
@@ -569,7 +617,7 @@ toolbar .toolbarbutton-1 > .toolbarbutton-icon, toolbar .toolbarbutton-1 > .tool
 }
 
 toolbar #nav-bar-customization-target .toolbarbutton-1:where(#reload-button, #stop-button) > .toolbarbutton-icon {
-    padding: 4px !important;
+    padding: 5px !important;
 }
 
 toolbar .toolbarbutton-1 > .toolbarbutton-icon {
@@ -621,10 +669,6 @@ toolbar .toolbarbutton-1#new-tab-button > .toolbarbutton-icon {
     margin: 0 5px !important;
 }
 
-#sidebarMenu-popup .subviewbutton {
-    margin: 0 !important;
-}
-
 .panel-subview-footer-button.subviewbutton {
     margin: 0 5px 5px 5px !important;
 }
@@ -634,8 +678,8 @@ toolbar .toolbarbutton-1#new-tab-button > .toolbarbutton-icon {
     margin: 0px !important;
 }
 
-.subviewbutton.subviewbutton-iconic {
-    padding: 4px !important;
+#BMB_bookmarksPopup .subviewbutton > .menu-iconic-text, #PlacesToolbar menu > .menu-iconic-text, #PlacesToolbar menuitem > .menu-iconic-text, .addon-banner-item > .toolbarbutton-text, .subviewbutton-iconic > .toolbarbutton-text, .subviewbutton[image] > .toolbarbutton-text, .subviewbutton[targetURI] > .toolbarbutton-text, .subviewbutton.bookmark-item > .toolbarbutton-text, .subviewbutton[checked="true"] > .toolbarbutton-text {
+    padding-inline-start: 5px !important;
 }
 
 .subview-subheader {
@@ -671,6 +715,21 @@ menupopup {
     border: none !important;
 }
 
+#PlacesToolbarDropIndicator, .tab-drop-indicator {
+    background: var(--toolbar-color) !important;
+    list-style-image: none !important;
+    border-radius: 2px !important;
+    margin-top: 2px !important;
+    height: 21px !important;
+    width: 2px !important;
+}
+
+.tab-drop-indicator {
+    margin-bottom: 2.5px !important;
+    margin-top: 4px !important;
+    opacity: 0.5 !important;
+}
+
 /* Common Properties */
 div[dynamicType="onboardTabToSearch"], .urlbarView-title-separator::before, .urlbarView-action, .urlbarView-row[label]::before, #editBookmarkPanelInfoArea, #editBookmarkPanel toolbarseparator, .tab-context-line {
     display: none !important;
@@ -696,27 +755,12 @@ toolbarbutton, #identity-box, toolbarbutton > *, .urlbarView-row *, .search-pane
     box-shadow: none !important;
 }
 
-#PlacesToolbar menuitem, #PlacesToolbar menu, panelview .toolbarbutton-1, .widget-overflow-list .toolbarbutton-1, #downloadsHistory.panel-subview-footer-button.subviewbutton, #appMenu-protonMainView .subviewbutton {
+#PlacesToolbar menuitem, #PlacesToolbar menu, panelview .toolbarbutton-1, .widget-overflow-list .toolbarbutton-1, #downloadsHistory.panel-subview-footer-button.subviewbutton, #appMenu-protonMainView .subviewbutton, #sidebarMenu-popup .subviewbutton, #allTabsMenu-searchTabs, #allTabsMenu-containerTabsButton {
     margin: 0 !important;
 }
 
 #nav-bar-customization-target toolbarbutton:not(#urlbar-zoom-button), #appMenu-fxa-status2[fxastatus] {
     padding: 0 !important;
-}
-
-#PlacesToolbarDropIndicator, .tab-drop-indicator {
-    background: var(--toolbar-color) !important;
-    list-style-image: none !important;
-    border-radius: 2px !important;
-    margin-top: 2px !important;
-    height: 21px !important;
-    width: 2px !important;
-}
-
-.tab-drop-indicator {
-    margin-bottom: 2.5px !important;
-    margin-top: 4px !important;
-    opacity: 0.5 !important;
 }
 
 /* icon CSS, icon styling 
@@ -869,27 +913,38 @@ toolbar .toolbarbutton-1 > .toolbarbutton-icon[label="Library"], toolbar .toolba
     list-style-image: url("./SVGs/Bookmark.svg") !important;
 }
 
+/* Makes bookmarks toolbar span multiple rows */
 
+/* Dummy variable to support versions 94-96, can be removed when 96 lands */
+:root{ --lwt-frame: var(--lwt-accent-color) }
 
-/* CSS made with the attempt to make the urlbar elements scalabe with --urlbar-height */
-#urlbar:not([open]) {
-    --urlbar-height: 29px !important;
-    --urlbar-min-height: var(--urlbar-height);
+#PersonalToolbar{
+  --multirow-bmb-n-rows: 2; /* Control how many rows are shown before scrolling */
+  --multirow-bmb-row-margin: 0px; /* Control how much spacing is between rows */
+  max-height: none !important;
 }
 
-#urlbar:not([open]) #urlbar-background {
-    height: var(--urlbar-height);
+#PlacesToolbar > hbox{ 
+  display: block;
+  width: 100vw;
 }
 
-.urlbar-page-action, #urlbar-go-button, .search-go-button {
-    padding: calc(var(--urlbar-icon-padding) - 1.5px) !important;
+#PlacesToolbarItems{
+  display: flex;
+  flex-wrap: wrap;
+  /* --uc-bm-padding is defined in autohide_bookmarks_toolbar.css */
+  max-height: calc(var(--multirow-bmb-n-rows) * (4px + 1em + (2 * (var(--multirow-bmb-row-margin) + var(--uc-bm-padding,var(--bookmark-block-padding)))))) !important;
+  overflow-y:auto;
+  scrollbar-color: var(--lwt-frame) var(--toolbar-bgcolor) ;
+  scrollbar-width: thin;
 }
 
-#urlbar[open] .urlbar-page-action {
-    padding: calc(var(--urlbar-icon-padding) - 1px )!important;
+/* Hide the all-bookmarks button */
+#PlacesChevron{ 
+    display: none 
 }
 
-
-#urlbar[open] .urlbar-page-action, #urlbar[open] #urlbar-input-container > box {
-    margin: 1.5px 0 2.25px 0 !important;
+/* Add some spacing between rows */
+#PlacesToolbarItems > .bookmark-item { 
+    margin: var(--multirow-bmb-row-margin) 0px !important; 
 }
