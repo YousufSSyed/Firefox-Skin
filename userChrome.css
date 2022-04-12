@@ -180,11 +180,14 @@
 }
 
 #PersonalToolbar {
-    padding-bottom: 1px !important;
-    padding-top: 0.5px !important;
+    padding-bottom: 2px !important;
 }
 
 #urlbar-input {
+    margin-top: -2px !important;
+}
+
+#urlbar[open] #urlbar-input {
     margin-top: -1px !important;
 }
 
@@ -198,7 +201,7 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
 
 #urlbar:not([open]) #urlbar-background {
     transform: translateY(1px) !important;
-    height: 29px !important;
+    height: 28px !important;
 }
 
 .tab-background {
@@ -218,7 +221,7 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
 }
 
 #urlbar-search-mode-indicator-close {
-    background: url("./SVGs/Close.svg") !important;
+    background-image: url("./SVGs/Close.svg") !important;
 }
 
 #PanelUI-button {
@@ -243,6 +246,10 @@ box-shadow: 0 1px 5px rgba(0,0,0,0.03), 0 1px 5px rgba(0,0,0,0.03) !important;
     padding: 2.5px !important;
 }
 
+#alltabs-button {
+    list-style-image: url("./SVGs/Down.svg") !important;
+}
+
 toolbar .toolbarbutton-1#alltabs-button > .toolbarbutton-badge-stack {
     transform: translateY(.25px);
     margin-left: -6px !important;
@@ -253,8 +260,20 @@ toolbar .toolbarbutton-1#alltabs-button > .toolbarbutton-badge-stack {
     margin-inline: 0px !important;
 }
 
+#allTabsMenu-allTabsViewTabs .subviewbutton-iconic > .toolbarbutton-icon {
+    margin-left: -6px !important;
+}
+
 #allTabsMenu-allTabsViewTabs {
-    padding-bottom: ;
+    padding-bottom: 5px !important
+}
+
+.bookmark-item menupopup {
+/*    max-height: 40vw !important; */
+}
+
+#appMenu-protonMainView .addon-banner-item, #appMenu-protonMainView .panel-banner-item {
+    margin: 0 0 5px 0 !important;
 }
 
 menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
@@ -266,7 +285,11 @@ menupopup > menuitem > .menu-iconic-left, menupopup > menu > .menu-iconic-left {
 }
 
 #urlbar-input-container > box {
-    margin: 1.5px 0 2.25px 0 !important;
+    margin: 1.5px 0 3.25px 0 !important;
+}
+
+#urlbar[open="true"] #urlbar-input-container > box {
+    margin: unset !important;
 }
 
 #star-button[starred], .urlbarView-row[source="bookmarks"] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-favicon, .urlbarView-type-icon {
@@ -316,15 +339,16 @@ menupopup > menu, menupopup > menuitem, menupopup > menucaption {
 /* work on border */
 .tab-background[selected="true"], :root:not([lwtheme-mozlightdark]) #TabsToolbar:not([brighttext]) #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background:-moz-lwtheme {
     box-shadow: 0 0px 5px rgba(0,0,0,0.08), 0 0px 5px rgba(0,0,0,0.08) !important;
-    border-radius: 1.5px 4px 4px 1.5px !important;
-}
-
-.tab-background:is([selected], [multiselected]):-moz-lwtheme {
+    border-radius: 4px !important;
     border: none !important;
-    border-left: 4px solid var(--lwt-tab-line-color, var(--lwt-tabs-border-color, currentColor)) !important;
 }
 
 #scrollbutton-down, #scrollbutton-up {
+    height: auto !important;
+    width: auto !important;
+}
+
+#tabbrowser-arrowscrollbox #scrollbutton-down, #tabbrowser-arrowscrollbox #scrollbutton-up {
     height: calc(var(--tab-min-height) + 7px) !important;
     width: calc(var(--tab-min-height) + 7px) !important;
     margin-bottom: -1px !important;
@@ -361,12 +385,17 @@ menupopup > menu, menupopup > menuitem, menupopup > menucaption {
     margin-left: 5px !important;
 }
 
-.urlbar-page-action, #urlbar-go-button, .search-go-button {
-    transform: scale(0.9);
+.urlbar-page-action {
+    transform: scale(0.9) !important;
+    margin: 0 0 2px 0 !important;
 }
 
-.urlbar-page-action image, #urlbar-go-button image, .search-go-button image {
-    transform: scale(1.05);
+.urlbar-page-action image {
+    transform: scale(1.3) !important;
+}
+
+#urlbar[open="true"] .urlbar-page-action image {
+    transform: scale(1) !important;
 }
 
 .urlbarView-row:not([type="tip"], [type="dynamic"])[selected] > .urlbarView-row-inner, .urlbarView-row-inner[selected] {
@@ -409,11 +438,11 @@ menupopup > menuitem, menupopup > menu {
 }
 
 #TabsToolbar {
-    --tab-min-height: 24px;
+    --tab-min-height: 22px;
 }
 
 .tab-content {
-    padding-left: 8px !important;
+    padding-left: 5px !important;
 }
 
 #nav-bar-customization-target {
@@ -548,8 +577,12 @@ menuseparator:before, toolbarseparator {
     opacity: 0.69;
 }
 
-.urlbarView-row:not([type="tip"], [type="dynamic"])[selected] > .urlbarView-row-inner, .urlbarView-row[aria-selected="true"] .urlbarView-url, .urlbarView-row-inner[selected], .urlbarView-tip-button[selected]:hover:active, .searchbar-engine-one-off-item[selected] {
+.urlbarView-row:not([type="tip"], [type="dynamic"])[selected] > .urlbarView-row-inner, .urlbarView-row-inner[selected], .urlbarView-tip-button[selected]:hover:active, .searchbar-engine-one-off-item[selected] {
     background-color: var(--toolbar-field-focus-color) !important;
+    color: var(--toolbar-field-focus-background-color) !important;
+}
+
+.urlbarView-row[aria-selected="true"] .urlbarView-url {
     color: var(--toolbar-field-focus-background-color) !important;
 }
 
@@ -574,23 +607,30 @@ menuseparator:before, toolbarseparator {
 
 #urlbar[breakout][breakout-extend] > #urlbar-input-container {
     padding: 2px 4px 2px calc(10px + var(--urlbar-container-padding)) !important;
+    border-radius: 4px 4px 2px 2px !important;
     border: highlight solid 3px !important;
     margin-bottom: 2px !important;
-    min-height: 37px !important;
-    height: unset !important;
+    min-height: 34px !important;
+    height: 34px !important;
+}
+
+#urlbar[open="true"] .urlbar-page-action {
+    padding: 2px 6px !important;
 }
 
 #urlbar-search-mode-indicator {
     padding-inline: 12px 6px !important;
     margin-inline-end: 2px !important;
     border-radius: 1em !important;
+    font-size: 0.9em !important;
     margin: 1px 0 !important;
 }
 
 #urlbar-search-mode-indicator #urlbar-search-mode-indicator-close {
-    background: url("./SVGs/Close.svg") no-repeat center !important;
-    background-size: 100% !important;
-    margin: 1px 0 0 -2px !important;
+    transition: var(--Transition) !important;
+    background-size: 80% !important;
+    margin: 1px 0 0 0px !important;
+    border-radius: 50% !important;
 }
 
 #urlbar-input-container {
@@ -755,7 +795,7 @@ toolbarbutton, #identity-box, toolbarbutton > *, .urlbarView-row *, .search-pane
     box-shadow: none !important;
 }
 
-#PlacesToolbar menuitem, #PlacesToolbar menu, panelview .toolbarbutton-1, .widget-overflow-list .toolbarbutton-1, #downloadsHistory.panel-subview-footer-button.subviewbutton, #appMenu-protonMainView .subviewbutton, #sidebarMenu-popup .subviewbutton, #allTabsMenu-searchTabs, #allTabsMenu-containerTabsButton {
+#PlacesToolbar menuitem, #PlacesToolbar menu, panelview .toolbarbutton-1, .widget-overflow-list .toolbarbutton-1, #downloadsHistory.panel-subview-footer-button.subviewbutton, #appMenu-protonMainView .subviewbutton, #sidebarMenu-popup .subviewbutton, #allTabsMenu-searchTabs, #allTabsMenu-containerTabsButton, #urlbar[open="true"] .urlbar-page-action {
     margin: 0 !important;
 }
 
@@ -797,11 +837,11 @@ toolbar .toolbarbutton-1 > .toolbarbutton-icon[label="Library"], toolbar .toolba
 }
 
 #save-to-pocket-button {
-    list-style-image: url("./SVGs/FavoriteOutline.svg") !important;
+    list-style-image: url("./SVGs/PocketOutline.svg") !important;
 }
 
 #save-to-pocket-button[open="true"], #save-to-pocket-button[pocketed="true"] {
-    list-style-image: url("./SVGs/Favorite.svg") !important;
+    list-style-image: url("./SVGs/Pocket.svg") !important;
 }
 
 #nav-bar-overflow-button {
@@ -929,11 +969,11 @@ toolbar .toolbarbutton-1 > .toolbarbutton-icon[label="Library"], toolbar .toolba
   width: 100vw;
 }
 
-#PlacesToolbarItems{
+#PlacesToolbarItems {
   display: flex;
   flex-wrap: wrap;
   /* --uc-bm-padding is defined in autohide_bookmarks_toolbar.css */
-  max-height: calc(var(--multirow-bmb-n-rows) * (4px + 1em + (2 * (var(--multirow-bmb-row-margin) + var(--uc-bm-padding,var(--bookmark-block-padding)))))) !important;
+  max-height: calc(var(--multirow-bmb-n-rows) * (3.5px + 1em + (2 * (var(--multirow-bmb-row-margin) + var(--bookmark-block-padding) ))));
   overflow-y:auto;
   scrollbar-color: var(--lwt-frame) var(--toolbar-bgcolor) ;
   scrollbar-width: thin;
